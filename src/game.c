@@ -14,8 +14,6 @@ void init_bricks(brick_t *bricks, int rows, int columns, Color *colors)
     const int VSPACING = 5;
     const int START_X = 15 + (FIELD_WIDTH - columns*(BRICK_WIDTH + HSPACING))/2;
 
-    printf("START_X: %d\n", START_X);
-
     for(int y = 0; y < rows; ++y)
     {
         Color color = (colors == 0) ? GREEN : colors[y];
@@ -84,9 +82,6 @@ brick_t* detect_brick_collision(ball_t *ball, brick_t *bricks, int rows, int col
             if(ball->pos.y + BALL_SIZE >= bricks[idx].pos.y && ball->pos.y - BALL_SIZE <= bricks[idx].pos.y + BRICK_HEIGHT) {
                 ball->direction.y *= -1;
                 bricks[idx].destroyed = true;
-                // printf("Collision detected!\n x: %d y: %d \n", x, y);
-                // printf("Brick: x: %f, y: %f\n", bricks[idx].pos.x, bricks[idx].pos.y);
-                // printf("destroyed: %d\n", bricks[idx].destroyed);
                 return &bricks[idx];
             }
         }
